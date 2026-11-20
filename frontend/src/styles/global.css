@@ -1,0 +1,223 @@
+/* ============================================================
+   ERCMS Global Styles
+   Applied after Bootstrap so these rules take precedence.
+   ============================================================ */
+
+/* --- Root custom properties --- */
+:root {
+  --ercms-primary: #1a6b3a;       /* Deep green — Equb brand colour */
+  --ercms-primary-dark: #134d2b;
+  --ercms-primary-light: #e8f5ee;
+  --ercms-accent: #f4a81d;        /* Gold accent */
+  --ercms-sidebar-width: 260px;
+  --ercms-navbar-height: 58px;
+  --ercms-font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+/* --- Base --- */
+body {
+  font-family: var(--ercms-font-family);
+  background-color: #f5f7fa;
+  color: #212529;
+}
+
+/* --- Scrollbar (WebKit) --- */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+/* --- Utility: primary button override --- */
+.btn-ercms-primary {
+  background-color: var(--ercms-primary);
+  border-color: var(--ercms-primary);
+  color: #fff;
+}
+.btn-ercms-primary:hover,
+.btn-ercms-primary:focus {
+  background-color: var(--ercms-primary-dark);
+  border-color: var(--ercms-primary-dark);
+  color: #fff;
+}
+
+/* --- Sidebar --- */
+.ercms-sidebar {
+  width: var(--ercms-sidebar-width);
+  height: 100vh;
+  background-color: var(--ercms-primary);
+  color: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1030;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease;
+}
+
+.ercms-sidebar .sidebar-brand {
+  padding: 1.25rem 1.5rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  text-decoration: none;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ercms-sidebar .nav-link {
+  color: rgba(255, 255, 255, 0.82);
+  padding: 0.65rem 1.5rem;
+  border-radius: 0;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  transition: background-color 0.15s;
+}
+.ercms-sidebar .nav-link:hover,
+.ercms-sidebar .nav-link.active {
+  background-color: rgba(255, 255, 255, 0.15);
+  color: #fff;
+}
+.ercms-sidebar .nav-section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.45);
+  padding: 1rem 1.5rem 0.25rem;
+}
+
+/* Make the nav items section scrollable */
+.ercms-sidebar nav {
+  min-height: 0;          /* required for flex overflow to work */
+  overflow-y: auto;
+  flex: 1 1 auto;
+  scrollbar-width: thin;  /* Firefox */
+  scrollbar-color: rgba(255,255,255,0.2) transparent;
+}
+/* WebKit scrollbar styling */
+.ercms-sidebar nav::-webkit-scrollbar {
+  width: 5px;
+}
+.ercms-sidebar nav::-webkit-scrollbar-track {
+  background: transparent;
+}
+.ercms-sidebar nav::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.2);
+  border-radius: 3px;
+}
+.ercms-sidebar nav::-webkit-scrollbar-thumb:hover {
+  background: rgba(255,255,255,0.35);
+}
+
+/* --- Main content area --- */
+.ercms-main {
+  margin-left: var(--ercms-sidebar-width);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.ercms-topbar {
+  height: var(--ercms-navbar-height);
+  background-color: #fff;
+  border-bottom: 1px solid #e9ecef;
+  display: flex;
+  align-items: center;
+  padding: 0 1.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 1020;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+.ercms-content {
+  flex: 1;
+  padding: 1.75rem;
+}
+
+/* --- Responsive: collapse sidebar on small screens --- */
+@media (max-width: 768px) {
+  .ercms-sidebar {
+    transform: translateX(-100%);
+  }
+  .ercms-sidebar.open {
+    transform: translateX(0);
+  }
+  .ercms-main {
+    margin-left: 0;
+  }
+}
+
+/* --- Cards --- */
+.ercms-stat-card {
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.ercms-stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* --- Page header --- */
+.ercms-page-header {
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--ercms-primary-light);
+}
+.ercms-page-header h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--ercms-primary-dark);
+  margin-bottom: 0.15rem;
+}
+
+/* --- Auth pages --- */
+.auth-wrapper {
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--ercms-primary) 0%, #2d9e60 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+.auth-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+  width: 100%;
+  max-width: 460px;
+  padding: 2.5rem;
+}
+.auth-logo {
+  font-size: 2rem;
+  color: var(--ercms-primary);
+  margin-bottom: 0.5rem;
+}
+.auth-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--ercms-primary-dark);
+}
+.auth-subtitle {
+  font-size: 0.875rem;
+  color: #6c757d;
+}
+
+/* --- Role badge colours --- */
+.role-badge-admin     { background-color: #dc3545; }
+.role-badge-organizer { background-color: #0d6efd; }
+.role-badge-treasurer { background-color: #198754; }
+.role-badge-member    { background-color: #6c757d; }
+.role-badge-auditor   { background-color: #fd7e14; }
